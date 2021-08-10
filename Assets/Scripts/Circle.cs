@@ -6,6 +6,7 @@ public class Circle : MonoBehaviour
 {
 	private Transform _transform;
 	[SerializeField] private int _id;
+	public bool isOut = false;
 	public int Id{ get{ return _id; } }
 
 	private void Start()

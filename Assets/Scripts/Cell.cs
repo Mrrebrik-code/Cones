@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
+	public int Id;
 	private Transform _transform;
 	public Transform Transform { get{ return _transform; } }
 
@@ -12,6 +13,6 @@ public class Cell : MonoBehaviour
 		_transform = GetComponent<Transform>();
 	}
 
-	public Circle CircleBusy{ get; set; }
+	public Circle CircleBusy;
 	public bool IsBusy;
 }
