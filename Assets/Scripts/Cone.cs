@@ -17,8 +17,10 @@ public class Cone : MonoBehaviour
 		{
 			if (cellCheck.CircleBusy != null || GameHandler.Instance.SelectedCones.Count == 2)
 			{
-				if(!CheckFill())
+				if (!CheckFill())
+				{
 					check = true;
+				}
 				else
 				{
 					GameHandler.Instance.SelectedCones[0]._cells.Reverse();
@@ -31,10 +33,11 @@ public class Cone : MonoBehaviour
 							cell.CircleBusy.SetPosition(cell.Transform.position);
 							cell.IsBusy = true;
 							GameHandler.Instance.SelectedCones[0].CircleOut = null;
-							GameHandler.Instance.SelectedCones[0]._cells.Reverse();
+
 							break;
 						}
 					}
+					GameHandler.Instance.SelectedCones[0]._cells.Reverse();
 				}
 				break;
 			}
@@ -51,6 +54,7 @@ public class Cone : MonoBehaviour
 
 
 
+
 		if (GameHandler.Instance.SelectedCones.Count < 2)
 		{
 			InAndOutCircleFromCell();
@@ -61,6 +65,25 @@ public class Cone : MonoBehaviour
 			GameHandler.Instance.SelectedCones = new List<Cone>();
 			return;
 			
+		}
+		else if (CheckCircle())
+		{
+			GameHandler.Instance.SelectedCones[0]._cells.Reverse();
+			foreach (var cell in GameHandler.Instance.SelectedCones[0]._cells)
+			{
+				if (!cell.IsBusy && GameHandler.Instance.SelectedCones[0].CircleOut)
+				{
+					cell.CircleBusy = GameHandler.Instance.SelectedCones[0].CircleOut;
+					cell.CircleBusy.isOut = false;
+					cell.CircleBusy.SetPosition(cell.Transform.position);
+					cell.IsBusy = true;
+					GameHandler.Instance.SelectedCones[0].CircleOut = null;
+					break;
+				}
+			}
+			GameHandler.Instance.SelectedCones[0]._cells.Reverse();
+			GameHandler.Instance.SelectedCones = new List<Cone>();
+			return;
 		}
 		else
 		{
@@ -74,17 +97,40 @@ public class Cone : MonoBehaviour
 					GameHandler.Instance.SelectedCones[0].CircleOut.SetPosition(cell.Transform.position);
 					GameHandler.Instance.SelectedCones[0].CircleOut.isOut = false;
 					GameHandler.Instance.SelectedCones[0].CircleOut = null;
-					GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+
 					break;
 
 				}
 			}
+			GameHandler.Instance.SelectedCones[1]._cells.Reverse();
 			GameHandler.Instance.SelectedCones = new List<Cone>();
 
 		}
 
 	}
 
+	private bool CheckCircle()
+	{
+		GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+		foreach (var cell in GameHandler.Instance.SelectedCones[1]._cells)
+		{
+			if(cell.CircleBusy != null && cell.CircleBusy.Id == GameHandler.Instance.SelectedCones[0].CircleOut.Id)
+			{
+				Debug.LogError(cell.CircleBusy.Id + "-" + cell.CircleBusy.gameObject.name +  ":" + GameHandler.Instance.SelectedCones[0].CircleOut.Id + "-" + GameHandler.Instance.SelectedCones[0].CircleOut.gameObject.name);
+				//GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+				GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+				return false;
+			}
+		}
+		
+		if (!GameHandler.Instance.SelectedCones[1]._cells[0].IsBusy)
+		{
+			GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+			return false;
+		}
+		GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+		return true;
+	}
 	private bool CheckFill()
 	{
 		bool check = true;
@@ -133,6 +179,7 @@ public class Cone : MonoBehaviour
 				return;
 			}
 		}
+		_cells.Reverse();
 
 	}
 	private void SortCells()
