@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cone : MonoBehaviour
 {
-	public List<Cell> _cells = new List<Cell>();
+	public List<Cell> Cells = new List<Cell>();
 	public bool isReady = false;
 	public Transform OutPositionToCone;
 	public Circle CircleOut;
@@ -13,7 +13,7 @@ public class Cone : MonoBehaviour
 	{
 		GameHandler.Instance.SelectedCone(this);
 		var check = false;
-		foreach (var cellCheck in _cells)
+		foreach (var cellCheck in Cells)
 		{
 			if (cellCheck.CircleBusy != null || GameHandler.Instance.SelectedCones.Count == 2)
 			{
@@ -23,8 +23,8 @@ public class Cone : MonoBehaviour
 				}
 				else
 				{
-					GameHandler.Instance.SelectedCones[0]._cells.Reverse();
-					foreach (var cell in GameHandler.Instance.SelectedCones[0]._cells)
+					GameHandler.Instance.SelectedCones[0].Cells.Reverse();
+					foreach (var cell in GameHandler.Instance.SelectedCones[0].Cells)
 					{
 						if (!cell.IsBusy && GameHandler.Instance.SelectedCones[0].CircleOut)
 						{
@@ -37,7 +37,7 @@ public class Cone : MonoBehaviour
 							break;
 						}
 					}
-					GameHandler.Instance.SelectedCones[0]._cells.Reverse();
+					GameHandler.Instance.SelectedCones[0].Cells.Reverse();
 				}
 				break;
 			}
@@ -68,8 +68,8 @@ public class Cone : MonoBehaviour
 		}
 		else if (CheckCircle())
 		{
-			GameHandler.Instance.SelectedCones[0]._cells.Reverse();
-			foreach (var cell in GameHandler.Instance.SelectedCones[0]._cells)
+			GameHandler.Instance.SelectedCones[0].Cells.Reverse();
+			foreach (var cell in GameHandler.Instance.SelectedCones[0].Cells)
 			{
 				if (!cell.IsBusy && GameHandler.Instance.SelectedCones[0].CircleOut)
 				{
@@ -81,14 +81,14 @@ public class Cone : MonoBehaviour
 					break;
 				}
 			}
-			GameHandler.Instance.SelectedCones[0]._cells.Reverse();
+			GameHandler.Instance.SelectedCones[0].Cells.Reverse();
 			GameHandler.Instance.SelectedCones = new List<Cone>();
 			return;
 		}
 		else
 		{
-			GameHandler.Instance.SelectedCones[1]._cells.Reverse();
-			foreach (var cell in GameHandler.Instance.SelectedCones[1]._cells)
+			GameHandler.Instance.SelectedCones[1].Cells.Reverse();
+			foreach (var cell in GameHandler.Instance.SelectedCones[1].Cells)
 			{
 				if (cell.IsBusy == false)
 				{
@@ -102,7 +102,7 @@ public class Cone : MonoBehaviour
 
 				}
 			}
-			GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+			GameHandler.Instance.SelectedCones[1].Cells.Reverse();
 			GameHandler.Instance.SelectedCones = new List<Cone>();
 
 		}
@@ -111,24 +111,24 @@ public class Cone : MonoBehaviour
 
 	private bool CheckCircle()
 	{
-		GameHandler.Instance.SelectedCones[1]._cells.Reverse();
-		foreach (var cell in GameHandler.Instance.SelectedCones[1]._cells)
+		GameHandler.Instance.SelectedCones[1].Cells.Reverse();
+		foreach (var cell in GameHandler.Instance.SelectedCones[1].Cells)
 		{
 			if(cell.CircleBusy != null && cell.CircleBusy.Id == GameHandler.Instance.SelectedCones[0].CircleOut.Id)
 			{
 				Debug.LogError(cell.CircleBusy.Id + "-" + cell.CircleBusy.gameObject.name +  ":" + GameHandler.Instance.SelectedCones[0].CircleOut.Id + "-" + GameHandler.Instance.SelectedCones[0].CircleOut.gameObject.name);
 				//GameHandler.Instance.SelectedCones[1]._cells.Reverse();
-				GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+				GameHandler.Instance.SelectedCones[1].Cells.Reverse();
 				return false;
 			}
 		}
 		
-		if (!GameHandler.Instance.SelectedCones[1]._cells[0].IsBusy)
+		if (!GameHandler.Instance.SelectedCones[1].Cells[0].IsBusy)
 		{
-			GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+			GameHandler.Instance.SelectedCones[1].Cells.Reverse();
 			return false;
 		}
-		GameHandler.Instance.SelectedCones[1]._cells.Reverse();
+		GameHandler.Instance.SelectedCones[1].Cells.Reverse();
 		return true;
 	}
 	private bool CheckFill()
@@ -138,7 +138,7 @@ public class Cone : MonoBehaviour
 		{
 			return false;
 		}
-		foreach (var cellCheck in GameHandler.Instance.SelectedCones[1]._cells)
+		foreach (var cellCheck in GameHandler.Instance.SelectedCones[1].Cells)
 		{
 			if (!cellCheck.IsBusy)
 			{
@@ -149,7 +149,7 @@ public class Cone : MonoBehaviour
 	}
 	public void InAndOutCircleFromCell()
 	{
-		foreach (var cell in _cells)
+		foreach (var cell in Cells)
 		{
 			if (cell.IsBusy && CircleOut == null )
 			{
@@ -165,8 +165,8 @@ public class Cone : MonoBehaviour
 				return;
 			}
 		}
-		_cells.Reverse();
-		foreach (var cell in _cells)
+		Cells.Reverse();
+		foreach (var cell in Cells)
 		{
 			if (!cell.IsBusy && CircleOut)
 			{
@@ -175,19 +175,19 @@ public class Cone : MonoBehaviour
 				cell.CircleBusy.SetPosition(cell.Transform.position);
 				cell.IsBusy = true;
 				CircleOut = null;
-				_cells.Reverse();
+				Cells.Reverse();
 				return;
 			}
 		}
-		_cells.Reverse();
+		Cells.Reverse();
 
 	}
 	private void SortCells()
 	{
 		var temp = new List<Cell>();
-		for (int i = 0; i < _cells.Count; i++)
+		for (int i = 0; i < Cells.Count; i++)
 		{
-			foreach (var cell in _cells)
+			foreach (var cell in Cells)
 			{
 				if (cell.Id == i)
 				{
@@ -196,7 +196,7 @@ public class Cone : MonoBehaviour
 				}
 			}
 		}
-		_cells = temp;
+		Cells = temp;
 	}
 
 }

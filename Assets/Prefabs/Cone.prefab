@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   CircleBusy: {fileID: 0}
+  StartCircleBusy: {fileID: 0}
   IsBusy: 0
 --- !u!1 &816440923078480568
 GameObject:
@@ -280,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412c50e194143814eb532852f42e4dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cells:
+  Cells:
   - {fileID: 816440923966189014}
   - {fileID: 816440922894938014}
   - {fileID: 816440924420111783}
@@ -410,6 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   CircleBusy: {fileID: 0}
+  StartCircleBusy: {fileID: 0}
   IsBusy: 0
 --- !u!1 &816440924420111781
 GameObject:
@@ -508,4 +510,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   CircleBusy: {fileID: 0}
+  StartCircleBusy: {fileID: 0}
   IsBusy: 1
