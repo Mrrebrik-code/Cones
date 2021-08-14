@@ -6,5 +6,4 @@ public class Level : MonoBehaviour
 {
 	public int Id;
 	public List<Cone> Cones;
-	public List<Circle> Circles;
 }
