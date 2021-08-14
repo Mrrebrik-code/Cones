@@ -39,9 +39,15 @@ public class GameHandler : MonoBehaviour
 
 	public void BreakLevel()
 	{
-		foreach (var Cones in CurrentLevel.Cones)
+		SelectedCones = new List<Cone>();
+		foreach (var Cone in CurrentLevel.Cones)
 		{
-			foreach (var cell in Cones.Cells)
+			if (Cone.CircleOut)
+			{
+				Cone.CircleOut.isOut = false;
+				Cone.CircleOut = null;
+			}
+			foreach (var cell in Cone.Cells)
 			{
 				cell.Restart();
 			}

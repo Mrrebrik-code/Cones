@@ -116,8 +116,6 @@ public class Cone : MonoBehaviour
 		{
 			if(cell.CircleBusy != null && cell.CircleBusy.Id == GameHandler.Instance.SelectedCones[0].CircleOut.Id)
 			{
-				Debug.LogError(cell.CircleBusy.Id + "-" + cell.CircleBusy.gameObject.name +  ":" + GameHandler.Instance.SelectedCones[0].CircleOut.Id + "-" + GameHandler.Instance.SelectedCones[0].CircleOut.gameObject.name);
-				//GameHandler.Instance.SelectedCones[1]._cells.Reverse();
 				GameHandler.Instance.SelectedCones[1].Cells.Reverse();
 				return false;
 			}
@@ -181,22 +179,6 @@ public class Cone : MonoBehaviour
 		}
 		Cells.Reverse();
 
-	}
-	private void SortCells()
-	{
-		var temp = new List<Cell>();
-		for (int i = 0; i < Cells.Count; i++)
-		{
-			foreach (var cell in Cells)
-			{
-				if (cell.Id == i)
-				{
-					temp.Add(cell);
-					break;
-				}
-			}
-		}
-		Cells = temp;
 	}
 
 }
