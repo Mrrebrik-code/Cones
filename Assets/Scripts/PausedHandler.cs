@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PausedHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public static PausedHandler Instance;
+	[SerializeField] private GameObject _mapLevels;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Awake()
+	{
+		Instance = this;
+	}
+	public void OpenMapLevels()
+	{
+		_mapLevels.SetActive(true);
+	}
+	public void CloseMapLevels()
+	{
+		_mapLevels.SetActive(false);
+	}
 }

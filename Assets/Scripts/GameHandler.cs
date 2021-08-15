@@ -16,10 +16,14 @@ public class GameHandler : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
-		StartLevel(Levels[0]);
+		StartLevel(Levels[4]);
 	}
-	private void StartLevel(Level levelStart)
+	public void StartLevel(Level levelStart)
 	{
+		if(CurrentLevel != null)
+		{
+			BreakLevel();
+		}
 		CurrentLevel = levelStart;
 		foreach (var level in Levels)
 		{
