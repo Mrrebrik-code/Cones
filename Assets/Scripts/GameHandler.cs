@@ -16,7 +16,7 @@ public class GameHandler : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
-		StartLevel(Levels[2]);
+		StartLevel(Levels[0]);
 	}
 	private void StartLevel(Level levelStart)
 	{

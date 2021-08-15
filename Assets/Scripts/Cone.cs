@@ -66,7 +66,7 @@ public class Cone : MonoBehaviour
 			return;
 			
 		}
-		else if (CheckCircle())
+		else if (!CheckCircle())
 		{
 			GameHandler.Instance.SelectedCones[0].Cells.Reverse();
 			foreach (var cell in GameHandler.Instance.SelectedCones[0].Cells)
@@ -111,23 +111,37 @@ public class Cone : MonoBehaviour
 
 	private bool CheckCircle()
 	{
-		GameHandler.Instance.SelectedCones[1].Cells.Reverse();
+		var check = false;
+		Circle circleTemp = default;
 		foreach (var cell in GameHandler.Instance.SelectedCones[1].Cells)
 		{
-			if(cell.CircleBusy != null && cell.CircleBusy.Id == GameHandler.Instance.SelectedCones[0].CircleOut.Id)
+			if (cell.IsBusy)
 			{
-				GameHandler.Instance.SelectedCones[1].Cells.Reverse();
-				return false;
+				circleTemp = cell.CircleBusy;
+				break;
 			}
 		}
-		
-		if (!GameHandler.Instance.SelectedCones[1].Cells[0].IsBusy)
+		if(circleTemp != null)
 		{
-			GameHandler.Instance.SelectedCones[1].Cells.Reverse();
-			return false;
+			if(circleTemp.Id == GameHandler.Instance.SelectedCones[0].CircleOut.Id)
+			{
+				check = true;
+			}
 		}
-		GameHandler.Instance.SelectedCones[1].Cells.Reverse();
-		return true;
+		else
+		{
+			if (!GameHandler.Instance.SelectedCones[1].Cells[Cells.Count - 1].IsBusy)
+			{
+				check = true;
+			}
+			else
+			{
+				check = false;
+			}
+			
+		}
+
+		return check;
 	}
 	private bool CheckFill()
 	{
