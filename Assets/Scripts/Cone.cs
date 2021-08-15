@@ -8,6 +8,7 @@ public class Cone : MonoBehaviour
 	public bool isReady = false;
 	public Transform OutPositionToCone;
 	public Circle CircleOut;
+	public bool isComplet;
 
 	private void OnMouseDown()
 	{
@@ -62,6 +63,7 @@ public class Cone : MonoBehaviour
 		else if(GameHandler.Instance.SelectedCones[0] == GameHandler.Instance.SelectedCones[1])
 		{
 			InAndOutCircleFromCell();
+			CheckCellsFill();
 			GameHandler.Instance.SelectedCones = new List<Cone>();
 			return;
 			
@@ -106,6 +108,7 @@ public class Cone : MonoBehaviour
 			GameHandler.Instance.SelectedCones = new List<Cone>();
 
 		}
+		CheckCellsFill();
 
 	}
 
@@ -193,6 +196,34 @@ public class Cone : MonoBehaviour
 		}
 		Cells.Reverse();
 
+	}
+
+	public bool CheckCellsFill()
+	{
+		foreach (var cell in Cells)
+		{
+			if (cell.IsBusy)
+			{
+				continue;
+			}
+			else
+			{
+				isComplet = false;
+				return false;
+			}
+		}
+		if(Cells[0].CircleBusy.Id == Cells[Cells.Count - 1].CircleBusy.Id)
+		{
+
+			isComplet = true;
+			GameHandler.Instance.CheckLevel();
+			return true;
+		}
+		else
+		{
+			isComplet = false;
+			return false;
+		}
 	}
 
 }

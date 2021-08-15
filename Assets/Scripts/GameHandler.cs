@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameHandler : MonoBehaviour
 	public List<Cone> SelectedCones = new List<Cone>();
 	public List<Level> Levels = new List<Level>();
 	public Level CurrentLevel;
+	[SerializeField] private Text _levelText;
 	public void SelectedCone(Cone cone)
 	{
 		SelectedCones.Add(cone);
@@ -16,11 +18,12 @@ public class GameHandler : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
-		StartLevel(Levels[4]);
+		StartLevel(Levels[0]);
 	}
 	public void StartLevel(Level levelStart)
 	{
-		if(CurrentLevel != null)
+		_levelText.text = $"спнбемэ {levelStart.Id}";
+		if (CurrentLevel != null)
 		{
 			BreakLevel();
 		}
@@ -36,9 +39,26 @@ public class GameHandler : MonoBehaviour
 		}
 	}
 
+	public void CheckLevel()
+	{
+		var temp = 0;
+		foreach (var cone in CurrentLevel.Cones)
+		{
+			if (cone.isComplet)
+			{
+				temp++;
+			}
+
+		}
+		if(temp == CurrentLevel.CountCones)
+		{
+			NextLevel();
+		}
+			
+	}
 	private void NextLevel()
 	{
-
+		StartLevel(Levels[CurrentLevel.Id]);
 	}
 
 	public void BreakLevel()
@@ -46,6 +66,7 @@ public class GameHandler : MonoBehaviour
 		SelectedCones = new List<Cone>();
 		foreach (var Cone in CurrentLevel.Cones)
 		{
+			Cone.isComplet = false;
 			if (Cone.CircleOut)
 			{
 				Cone.CircleOut.isOut = false;
