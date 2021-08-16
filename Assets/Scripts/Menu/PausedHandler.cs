@@ -9,6 +9,7 @@ public class PausedHandler : MonoBehaviour
 	public static PausedHandler Instance;
 	[SerializeField] private GameObject _mapLevels;
 	[SerializeField] private GameObject _winPanel;
+	[SerializeField] private GameObject _homePanel;
 	[SerializeField] private Text _textCurrentCompletLevel;
 	public Text _textCountMoleculesReward;
 	private const string _sceneMenu = "_Menu";
@@ -39,5 +40,10 @@ public class PausedHandler : MonoBehaviour
 	public void CloseWinPanel()
 	{
 		_winPanel.SetActive(false);
+	}
+
+	public void CloseHomePanel()
+	{
+		_homePanel.SetActive(false);
 	}
 }

@@ -8,5 +8,6 @@ public class Level : MonoBehaviour
 	public List<Cone> Cones;
 	public int CountCones;
 	public int RewardMolecules;
+	public bool isComplet;
 
 }

@@ -10,6 +10,7 @@ public class GameHandler : MonoBehaviour
 	public List<Level> Levels = new List<Level>();
 	public Level CurrentLevel;
 	[SerializeField] private Text _levelText;
+	[SerializeField] private MapLevelHandler _mapLevelHandler;
 	public void SelectedCone(Cone cone)
 	{
 		SelectedCones.Add(cone);
@@ -18,7 +19,20 @@ public class GameHandler : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
-		StartLevel(Levels[0]);
+		foreach (var level in Levels)
+		{
+			if(PlayerPrefs.HasKey("level_" + (level.Id - 1)))
+			{
+				level.isComplet = true;
+				continue;
+			}
+			else
+			{
+				level.isComplet = false;
+				StartLevel(level);
+				break;
+			}
+		}
 	}
 	public void StartLevel(Level levelStart)
 	{
@@ -28,6 +42,7 @@ public class GameHandler : MonoBehaviour
 			BreakLevel();
 		}
 		CurrentLevel = levelStart;
+		_mapLevelHandler.UpdateLevelButton(CurrentLevel);
 		foreach (var level in Levels)
 		{
 
@@ -52,6 +67,8 @@ public class GameHandler : MonoBehaviour
 		}
 		if(temp == CurrentLevel.CountCones)
 		{
+			CurrentLevel.isComplet = true;
+			PlayerPrefs.SetInt("level_" + (CurrentLevel.Id - 1), 1);
 			PausedHandler.Instance.OpenWinPanel();
 			MoleculesBank.Instance.AddMolecules(CurrentLevel.RewardMolecules);
 		}
