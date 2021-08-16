@@ -3362,7 +3362,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1870613834}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1900461031}
+        m_TargetAssemblyTypeName: EditorHandler, Assembly-CSharp
+        m_MethodName: Recuve
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1870613834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3455,6 +3467,7 @@ MonoBehaviour:
   Circles: []
   statusRun: {fileID: 372372726}
   SelectedCones: []
+  _textButtonRun: {fileID: 2076203982}
   isRun: 0
 --- !u!1001 &1910843186
 PrefabInstance:
@@ -4376,7 +4389,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2109505994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1900461031}
+        m_TargetAssemblyTypeName: EditorHandler, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2109505994
 MonoBehaviour:
   m_ObjectHideFlags: 0

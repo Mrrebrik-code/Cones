@@ -19,6 +19,7 @@ public class EditorHandler : MonoBehaviour
 	[SerializeField] private Image statusRun;
 
 	public List<ConesEditor> SelectedCones = new List<ConesEditor>();
+	[SerializeField] private Text _textButtonRun;
 	public void SelectedCone(ConesEditor cone)
 	{
 		SelectedCones.Add(cone);
@@ -33,27 +34,53 @@ public class EditorHandler : MonoBehaviour
 	{
 		foreach (var cone in ConesEditors)
 		{
-			/*foreach (var cell in cone.CellEditor)
+			foreach (var cell in cone.Cells)
 			{
-				//cell.SetColor(Color.white);
-				//cell.CurrentColor = Color.white;
-			}*/
+				cell.StartCircleBusy.SetColor(Color.white);
+				cell.StartCircleBusy.CurrentColor = Color.white;
+				cell.Restart();
+			}
 		}
 	}
 	public void Save()
 	{
-
+		foreach (var cone in ConesEditors)
+		{
+			foreach (var cell in cone.Cells)
+			{
+				cell.SaveCurrent();
+				if(cell.CircleBusy != null)
+				{
+					cell.CircleBusy.SaveCurrent();
+				}
+					
+			}
+		}
 	}
 	public void Recuve()
 	{
-
+		foreach (var cone in ConesEditors)
+		{
+			foreach (var cell in cone.Cells)
+			{
+				cell.UndoToSave();
+				if(cell.CircleBusy != null)
+				{
+					cell.CircleBusy.UndoToSave();
+				}
+				
+			}
+		}
 	}
 
 	public bool isRun;
 	public void Run()
 	{
+
 		if (!isRun)
 		{
+			_textButtonRun.text = "Œ—“¿ÕŒ¬»“‹";
+			Save();
 			statusRun.color = Color.red;
 			isRun = !isRun;
 			foreach (var cone in ConesEditors)
@@ -68,6 +95,9 @@ public class EditorHandler : MonoBehaviour
 		}
 		else
 		{
+			_textButtonRun.text = "«¿œ”—“»“‹";
+			Break();
+			Recuve();
 			isRun = !isRun;
 			statusRun.color = Color.white;
 			foreach (var cone in ConesEditors)

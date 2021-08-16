@@ -11,11 +11,27 @@ public class CircleEditor : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	public bool EnterMouse;
 	public Color CurrentColor;
 	public Action OnActiveToCellAction;
+	public Action<CircleEditor> OnAddCircleAction;
 	public bool isRunEditor;
 	private void Start()
 	{
 		CurrentColor = Image.color;
 		EditorHandler.Instance.Circles.Add(this);
+	}
+
+	public Color ColorSaved;
+	public int IdSaved;
+	public void SaveCurrent()
+	{
+		ColorSaved = CurrentColor;
+		IdSaved = Id;
+	}
+
+	public void UndoToSave()
+	{
+		CurrentColor = ColorSaved;
+		Image.color = CurrentColor;
+		Id = IdSaved;
 	}
 	public void OnPointerClick(PointerEventData eventData)
 	{
@@ -28,6 +44,7 @@ public class CircleEditor : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 				{
 					SetColor(ToolsEditor.Instance.CurrentconfigColor.Color);
 					CurrentColor = ToolsEditor.Instance.CurrentconfigColor.Color;
+					OnAddCircleAction?.Invoke(this);
 					_id = ToolsEditor.Instance.CurrentconfigColor.Id;
 				}
 				if (ToolsEditor.Instance.CurrentTools.TypeTool == ToolsType.lastik)
@@ -71,7 +88,7 @@ public class CircleEditor : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	public Vector3 StartPosition;
 	[SerializeField] private int _id;
 	public bool isOut = false;
-	public int Id { get { return _id; } }
+	public int Id { get { return _id; } set{ _id = value; } }
 
 	public void SetPosition(Vector3 position)
 	{
