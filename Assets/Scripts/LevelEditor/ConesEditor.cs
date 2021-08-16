@@ -14,7 +14,7 @@ public class ConesEditor : MonoBehaviour
 
 	public void OnTap()
 	{
-		//GameHandler.Instance.SelectedCone(this);
+		EditorHandler.Instance.SelectedCone(this);
 		var check = false;
 		foreach (var cellCheck in Cells)
 		{

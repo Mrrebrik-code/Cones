@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -683,7 +683,7 @@ MonoBehaviour:
   Id: 0
   CircleBusy: {fileID: 2468784112126570756}
   StartCircleBusy: {fileID: 0}
-  IsBusy: 0
+  IsBusy: 1
 --- !u!1 &8651671607466957269
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +776,7 @@ MonoBehaviour:
   Id: 1
   CircleBusy: {fileID: 1226503876563335882}
   StartCircleBusy: {fileID: 0}
-  IsBusy: 0
+  IsBusy: 1
 --- !u!1 &8651671609198211604
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,4 +869,4 @@ MonoBehaviour:
   Id: 2
   CircleBusy: {fileID: 4315782611112180024}
   StartCircleBusy: {fileID: 0}
-  IsBusy: 0
+  IsBusy: 1

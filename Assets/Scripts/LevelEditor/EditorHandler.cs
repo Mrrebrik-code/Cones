@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EditorHandler : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EditorHandler : MonoBehaviour
 	public ConesEditor ConesPrefab;
 	public AddButton AddButton;
 	public int MaxCountCones;
+
+	[SerializeField] private Image statusRun;
 
 	public List<ConesEditor> SelectedCones = new List<ConesEditor>();
 	public void SelectedCone(ConesEditor cone)
@@ -41,21 +44,34 @@ public class EditorHandler : MonoBehaviour
 	{
 
 	}
+
+	public bool isRun;
 	public void Run()
 	{
-		foreach (var cone in ConesEditors)
+		if (!isRun)
 		{
-			cone.Button.SetActive(true);
+			statusRun.color = Color.red;
+			isRun = !isRun;
+			foreach (var cone in ConesEditors)
+			{
+				cone.Button.SetActive(true);
+			}
 		}
+		else
+		{
+			isRun = !isRun;
+			statusRun.color = Color.white;
+			foreach (var cone in ConesEditors)
+			{
+				cone.Button.SetActive(false);
+			}
+		}
+		
 	}
 
 	public void AddCones()
 	{
 		ConesEditors.Add(Instantiate(ConesPrefab, ContentCones));
-		if(ConesEditors.Count == MaxCountCones)
-		{
-			AddButton.Reversive();
-		}
 	}
 	public void DelCones()
 	{
