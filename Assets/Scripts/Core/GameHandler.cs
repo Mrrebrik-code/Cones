@@ -67,6 +67,7 @@ public class GameHandler : MonoBehaviour
 		}
 		if(temp == CurrentLevel.CountCones)
 		{
+			AudioHandler.Instance.PlaySound(TypeSound.win);
 			CurrentLevel.isComplet = true;
 			PlayerPrefs.SetInt("level_" + (CurrentLevel.Id - 1), 1);
 			PausedHandler.Instance.OpenWinPanel();

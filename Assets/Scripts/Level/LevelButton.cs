@@ -11,6 +11,7 @@ public class LevelButton : MonoBehaviour
 
 	public void SetLevel()
 	{
+		AudioHandler.Instance.PlaySound(TypeSound.buttonInteract);
 		GameHandler.Instance.StartLevel(GameHandler.Instance.Levels[LevelId - 1]);
 		PausedHandler.Instance.CloseMapLevels();
 		PausedHandler.Instance.CloseHomePanel();

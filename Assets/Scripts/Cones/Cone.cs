@@ -49,6 +49,7 @@ public class Cone : MonoBehaviour
 		}
 		if (!check)
 		{
+			AudioHandler.Instance.PlaySound(TypeSound.failMove);
 			GameHandler.Instance.SelectedCones = new List<Cone>();
 			return;
 		}
@@ -70,6 +71,7 @@ public class Cone : MonoBehaviour
 		}
 		else if (!CheckCircle())
 		{
+			AudioHandler.Instance.PlaySound(TypeSound.failMove);
 			GameHandler.Instance.SelectedCones[0].Cells.Reverse();
 			foreach (var cell in GameHandler.Instance.SelectedCones[0].Cells)
 			{
@@ -89,6 +91,7 @@ public class Cone : MonoBehaviour
 		}
 		else
 		{
+			AudioHandler.Instance.PlaySound(TypeSound.moveTo);
 			GameHandler.Instance.SelectedCones[1].Cells.Reverse();
 			foreach (var cell in GameHandler.Instance.SelectedCones[1].Cells)
 			{
@@ -164,6 +167,7 @@ public class Cone : MonoBehaviour
 	}
 	public void InAndOutCircleFromCell()
 	{
+		AudioHandler.Instance.PlaySound(TypeSound.move);
 		foreach (var cell in Cells)
 		{
 			if (cell.IsBusy && CircleOut == null )
