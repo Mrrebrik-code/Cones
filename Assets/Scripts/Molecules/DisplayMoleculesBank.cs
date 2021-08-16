@@ -7,11 +7,15 @@ using UnityEngine.UI;
 public class DisplayMoleculesBank : MonoBehaviour
 {
 	[SerializeField] private Text _textCountMoleculesBank;
-	[SerializeField] private Text _textCountMoleculesReward;
 	private void Awake()
     {
         MoleculesBank.OnChangedMoleculesAction += UpdateMoleculesCount;
     }
+
+	private void OnDestroy()
+	{
+		MoleculesBank.OnChangedMoleculesAction -= UpdateMoleculesCount;
+	}
 
 	private void UpdateMoleculesCount(int count)
 	{
