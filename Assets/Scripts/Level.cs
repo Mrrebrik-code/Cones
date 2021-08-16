@@ -7,4 +7,6 @@ public class Level : MonoBehaviour
 	public int Id;
 	public List<Cone> Cones;
 	public int CountCones;
+	public int RewardMolecules;
+
 }

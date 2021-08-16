@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PausedHandler : MonoBehaviour
 {
 	public static PausedHandler Instance;
 	[SerializeField] private GameObject _mapLevels;
+	[SerializeField] private GameObject _winPanel;
+	[SerializeField] private Text _textCurrentCompletLevel;
+	public Text _textCountMoleculesReward;
 
 	private void Awake()
 	{
@@ -18,5 +22,16 @@ public class PausedHandler : MonoBehaviour
 	public void CloseMapLevels()
 	{
 		_mapLevels.SetActive(false);
+	}
+
+	public void OpenWinPanel()
+	{
+		_winPanel.SetActive(true);
+		_textCountMoleculesReward.text = GameHandler.Instance.CurrentLevel.RewardMolecules.ToString();
+		_textCurrentCompletLevel.text = $"спнбемэ { GameHandler.Instance.CurrentLevel.Id}\nопнидем";
+	}
+	public void CloseWinPanel()
+	{
+		_winPanel.SetActive(false);
 	}
 }

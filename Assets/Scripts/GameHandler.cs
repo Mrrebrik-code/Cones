@@ -52,13 +52,15 @@ public class GameHandler : MonoBehaviour
 		}
 		if(temp == CurrentLevel.CountCones)
 		{
-			NextLevel();
+			PausedHandler.Instance.OpenWinPanel();
+			MoleculesBank.Instance.AddMolecules(CurrentLevel.RewardMolecules);
 		}
 			
 	}
-	private void NextLevel()
+	public void NextLevel()
 	{
 		StartLevel(Levels[CurrentLevel.Id]);
+		PausedHandler.Instance.CloseWinPanel();
 	}
 
 	public void BreakLevel()
