@@ -17,12 +17,17 @@ public class CellEditor : MonoBehaviour
 		_transform = GetComponent<Transform>();
 		if (CircleBusy != null)
 		{
+			CircleBusy.OnActiveToCellAction += DellCircle;
 			StartCircleBusy = CircleBusy;
 			CircleBusy.transform.position = transform.position;
 			CircleBusy.SetStartPosition();
 		}
 	}
-
+	public void DellCircle()
+	{
+		CircleBusy = null;
+		IsBusy = false;
+	}
 	public void Restart()
 	{
 		if (StartCircleBusy != null)

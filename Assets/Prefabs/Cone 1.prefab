@@ -91,6 +91,7 @@ MonoBehaviour:
   Image: {fileID: 2373796112237978355}
   EnterMouse: 0
   CurrentColor: {r: 0, g: 0, b: 0, a: 0}
+  isRunEditor: 0
   StartPosition: {x: 0, y: 0, z: 0}
   _id: 0
   isOut: 0
@@ -260,6 +261,7 @@ MonoBehaviour:
   Image: {fileID: 3787189904383254166}
   EnterMouse: 0
   CurrentColor: {r: 0, g: 0, b: 0, a: 0}
+  isRunEditor: 0
   StartPosition: {x: 0, y: 0, z: 0}
   _id: 0
   isOut: 0
@@ -486,6 +488,7 @@ MonoBehaviour:
   Image: {fileID: 1941579514662548525}
   EnterMouse: 0
   CurrentColor: {r: 0, g: 0, b: 0, a: 0}
+  isRunEditor: 0
   StartPosition: {x: 0, y: 0, z: 0}
   _id: 0
   isOut: 0
@@ -553,7 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -583,9 +586,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cells:
-  - {fileID: 1126316885917035250}
-  - {fileID: 7975079383403046044}
   - {fileID: 232867605032597813}
+  - {fileID: 7975079383403046044}
+  - {fileID: 1126316885917035250}
   isReady: 0
   OutPositionToCone: {fileID: 3583094939489681529}
   CircleOut: {fileID: 0}

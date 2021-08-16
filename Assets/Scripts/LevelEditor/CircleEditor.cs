@@ -3,52 +3,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class CircleEditor : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
 	public Image Image;
 	public bool EnterMouse;
 	public Color CurrentColor;
-	private void Awake()
+	public Action OnActiveToCellAction;
+	public bool isRunEditor;
+	private void Start()
 	{
 		CurrentColor = Image.color;
+		EditorHandler.Instance.Circles.Add(this);
 	}
 	public void OnPointerClick(PointerEventData eventData)
 	{
-
-		if(ToolsEditor.Instance.CurrentTools != null)
+		if (!isRunEditor)
 		{
-			EnterMouse = false;
-			if (ToolsEditor.Instance.CurrentTools.TypeTool == ToolsType.circles)
+			if (ToolsEditor.Instance.CurrentTools != null)
 			{
-				SetColor(ToolsEditor.Instance.CurrentColor);
-				CurrentColor = ToolsEditor.Instance.CurrentColor;
-			}
-			if (ToolsEditor.Instance.CurrentTools.TypeTool == ToolsType.lastik)
-			{
-				Image.color = new Color(0,0,0, 0f);
-				CurrentColor = Image.color;
+				EnterMouse = false;
+				if (ToolsEditor.Instance.CurrentTools.TypeTool == ToolsType.circles)
+				{
+					SetColor(ToolsEditor.Instance.CurrentconfigColor.Color);
+					CurrentColor = ToolsEditor.Instance.CurrentconfigColor.Color;
+					_id = ToolsEditor.Instance.CurrentconfigColor.Id;
+				}
+				if (ToolsEditor.Instance.CurrentTools.TypeTool == ToolsType.lastik)
+				{
+					OnActiveToCellAction?.Invoke();
+					Image.color = new Color(0, 0, 0, 0f);
+					CurrentColor = Image.color;
+				}
 			}
 		}
-		
-		
+
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		EnterMouse = true;
-		SetColor(new Color(0, 0, 0, 0.5f));
+		if (!isRunEditor)
+		{
+			EnterMouse = true;
+			SetColor(new Color(0, 0, 0, 0.5f));
+		}
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		if (EnterMouse)
+		if (!isRunEditor)
 		{
-			SetColor(CurrentColor);
+			if (EnterMouse)
+			{
+				SetColor(CurrentColor);
+			}
+			EnterMouse = false;
 		}
-		EnterMouse = false;
 
-		
 	}
 
 	public void SetColor(Color color)

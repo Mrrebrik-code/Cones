@@ -7,10 +7,16 @@ using UnityEngine.EventSystems;
 public class CircleColor : MonoBehaviour
 {
 	public Image Image;
+	public ConfigColorEditor configColor;
+
+	private void Start()
+	{
+		configColor = new ConfigColorEditor(Image.color);
+	}
 
 	public void Click()
 	{
-		ToolsEditor.Instance.CurrentColor = Image.color;
+		ToolsEditor.Instance.CurrentconfigColor = configColor;
 	}
 
 

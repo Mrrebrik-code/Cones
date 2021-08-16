@@ -9,7 +9,7 @@ public class ToolsEditor : MonoBehaviour
 
 	public Tools CurrentTools;
 
-	public Color CurrentColor;
+	public ConfigColorEditor CurrentconfigColor;
 
 	public void Awake()
 	{

@@ -12,6 +12,10 @@ public class EditorHandler : MonoBehaviour
 	public AddButton AddButton;
 	public int MaxCountCones;
 
+	public List<ConfigColorEditor> ConfigColorEditor = new List<ConfigColorEditor>();
+
+	public List<CircleEditor> Circles = new List<CircleEditor>();
+
 	[SerializeField] private Image statusRun;
 
 	public List<ConesEditor> SelectedCones = new List<ConesEditor>();
@@ -55,6 +59,11 @@ public class EditorHandler : MonoBehaviour
 			foreach (var cone in ConesEditors)
 			{
 				cone.Button.SetActive(true);
+
+			}
+			foreach (var circle in Circles)
+			{
+				circle.isRunEditor = true;
 			}
 		}
 		else
@@ -64,6 +73,10 @@ public class EditorHandler : MonoBehaviour
 			foreach (var cone in ConesEditors)
 			{
 				cone.Button.SetActive(false);
+			}
+			foreach (var circle in Circles)
+			{
+				circle.isRunEditor = false;
 			}
 		}
 		
