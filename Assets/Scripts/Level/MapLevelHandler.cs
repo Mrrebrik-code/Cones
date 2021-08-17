@@ -10,7 +10,7 @@ public class MapLevelHandler : MonoBehaviour
 	public Color ColorActive;
 	public Color ColorComplet;
 
-	public void UpdateLevelButton(Level currentLevel)
+	public void UpdateLevelButton()
 	{
 		Level tempLevel = default;
 		foreach (var level in GameHandler.Instance.Levels)
@@ -36,7 +36,7 @@ public class MapLevelHandler : MonoBehaviour
 		}
 		foreach (var levelButton in LeveButtons)
 		{
-			if (levelButton.LevelId == tempLevel.Id)
+			if (tempLevel != null && levelButton.LevelId == tempLevel.Id)
 			{
 				levelButton.SetColor(ColorActive);
 				levelButton.GetComponent<Button>().interactable = true;

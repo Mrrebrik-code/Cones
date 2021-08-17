@@ -30,19 +30,21 @@ public class GameHandler : MonoBehaviour
 			{
 				level.isComplet = false;
 				StartLevel(level);
-				break;
+				return;
 			}
 		}
+		StartLevel(Levels[0]);
 	}
 	public void StartLevel(Level levelStart)
 	{
+
 		_levelText.text = $"спнбемэ {levelStart.Id}";
 		if (CurrentLevel != null)
 		{
 			BreakLevel();
 		}
 		CurrentLevel = levelStart;
-		_mapLevelHandler.UpdateLevelButton(CurrentLevel);
+		_mapLevelHandler.UpdateLevelButton();
 		foreach (var level in Levels)
 		{
 
@@ -68,15 +70,28 @@ public class GameHandler : MonoBehaviour
 		if(temp == CurrentLevel.CountCones)
 		{
 			AudioHandler.Instance.PlaySound(TypeSound.win);
-			CurrentLevel.isComplet = true;
-			PlayerPrefs.SetInt("level_" + (CurrentLevel.Id - 1), 1);
+
+			if (CurrentLevel.isComplet)
+			{
+				CurrentLevel.RewardMolecules = 0;
+			}
 			PausedHandler.Instance.OpenWinPanel();
 			MoleculesBank.Instance.AddMolecules(CurrentLevel.RewardMolecules);
+			CurrentLevel.isComplet = true;
+			PlayerPrefs.SetInt("level_" + (CurrentLevel.Id - 1), 1);
+
 		}
 			
 	}
 	public void NextLevel()
 	{
+		if (CurrentLevel.Id > Levels.Count - 1)
+		{
+			_mapLevelHandler.UpdateLevelButton();
+			PausedHandler.Instance.CloseWinPanel();
+			PausedHandler.Instance.OpenMapLevels();
+			return;
+		}
 		StartLevel(Levels[CurrentLevel.Id]);
 		PausedHandler.Instance.CloseWinPanel();
 	}
