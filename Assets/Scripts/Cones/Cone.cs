@@ -9,6 +9,7 @@ public class Cone : MonoBehaviour
 	public Transform OutPositionToCone;
 	public Circle CircleOut;
 	public bool isComplet;
+	
 
 	private void OnMouseDown()
 	{
@@ -24,6 +25,7 @@ public class Cone : MonoBehaviour
 				}
 				else
 				{
+					Debug.Log("Тест1");
 					GameHandler.Instance.SelectedCones[0].Cells.Reverse();
 					foreach (var cell in GameHandler.Instance.SelectedCones[0].Cells)
 					{
@@ -49,7 +51,16 @@ public class Cone : MonoBehaviour
 		}
 		if (!check)
 		{
-			AudioHandler.Instance.PlaySound(TypeSound.failMove);
+			if (GameHandler.Instance.CurrentLevel.Id <= 3)
+			{
+				AudioHandler.Instance.PlaySound(TypeSound.popup);
+				PausedHandler.Instance.ShowPopupHelper("Колба заполнена! Шар не может туда поместиться!");
+			}
+			else
+			{
+				AudioHandler.Instance.PlaySound(TypeSound.failMove);
+			}
+			
 			GameHandler.Instance.SelectedCones = new List<Cone>();
 			return;
 		}
@@ -71,7 +82,18 @@ public class Cone : MonoBehaviour
 		}
 		else if (!CheckCircle())
 		{
-			AudioHandler.Instance.PlaySound(TypeSound.failMove);
+			Debug.Log("Тест2");
+			
+			if(GameHandler.Instance.CurrentLevel.Id <= 3)
+			{
+				AudioHandler.Instance.PlaySound(TypeSound.popup);
+				PausedHandler.Instance.ShowPopupHelper("Шар может перемещаться либо в пустую колбу, либо в шар такого же цвета");
+			}
+			else
+			{
+				AudioHandler.Instance.PlaySound(TypeSound.failMove);
+			}
+			
 			GameHandler.Instance.SelectedCones[0].Cells.Reverse();
 			foreach (var cell in GameHandler.Instance.SelectedCones[0].Cells)
 			{
@@ -91,12 +113,14 @@ public class Cone : MonoBehaviour
 		}
 		else
 		{
+			Debug.Log("Тест3");
 			AudioHandler.Instance.PlaySound(TypeSound.moveTo);
 			GameHandler.Instance.SelectedCones[1].Cells.Reverse();
 			foreach (var cell in GameHandler.Instance.SelectedCones[1].Cells)
 			{
 				if (cell.IsBusy == false)
 				{
+					
 					cell.IsBusy = true;
 					cell.CircleBusy = GameHandler.Instance.SelectedCones[0].CircleOut;
 					GameHandler.Instance.SelectedCones[0].CircleOut.SetPosition(cell.Transform.position);
@@ -167,6 +191,7 @@ public class Cone : MonoBehaviour
 	}
 	public void InAndOutCircleFromCell()
 	{
+		Debug.Log("Тест4");
 		AudioHandler.Instance.PlaySound(TypeSound.move);
 		foreach (var cell in Cells)
 		{

@@ -11,6 +11,8 @@ public class PausedHandler : MonoBehaviour
 	[SerializeField] private GameObject _winPanel;
 	[SerializeField] private GameObject _homePanel;
 	[SerializeField] private Text _textCurrentCompletLevel;
+	[SerializeField] private GameObject _popupHelper;
+	[SerializeField] private Text _textPopup;
 	public Text _textCountMoleculesReward;
 	private const string _sceneMenu = "_Menu";
 
@@ -45,5 +47,21 @@ public class PausedHandler : MonoBehaviour
 	public void CloseHomePanel()
 	{
 		_homePanel.SetActive(false);
+	}
+
+	public void ShowPopupHelper(string comment)
+	{
+		StopAllCoroutines();
+		_popupHelper.SetActive(false);
+		_textPopup.text = comment;
+		StartCoroutine(ShowPopup());
+	}
+
+	private IEnumerator ShowPopup()
+	{
+		_popupHelper.SetActive(true);
+		yield return new WaitForSeconds(5.5f);
+		_popupHelper.SetActive(false);
+
 	}
 }

@@ -10,7 +10,8 @@ public enum TypeSound : int
 	move,
 	failMove,
 	moveTo,
-	buttonInteract
+	buttonInteract,
+	popup
 }
 public class AudioHandler : MonoBehaviour
 {

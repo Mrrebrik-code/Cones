@@ -90,6 +90,8 @@ public class GameHandler : MonoBehaviour
 			_mapLevelHandler.UpdateLevelButton();
 			PausedHandler.Instance.CloseWinPanel();
 			PausedHandler.Instance.OpenMapLevels();
+			AudioHandler.Instance.PlaySound(TypeSound.popup);
+			PausedHandler.Instance.ShowPopupHelper("Уровни закончились! Пожалуйста подождите обновления...");
 			return;
 		}
 		StartLevel(Levels[CurrentLevel.Id]);
