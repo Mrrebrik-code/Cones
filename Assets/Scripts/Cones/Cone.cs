@@ -9,7 +9,7 @@ public class Cone : MonoBehaviour
 	public Transform OutPositionToCone;
 	public Circle CircleOut;
 	public bool isComplet;
-	
+	public BoxCollider2D BoxCollierd2D;
 
 	private void OnMouseDown()
 	{

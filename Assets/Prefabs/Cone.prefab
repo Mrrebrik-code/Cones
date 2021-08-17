@@ -288,6 +288,8 @@ MonoBehaviour:
   isReady: 0
   OutPositionToCone: {fileID: 475664498}
   CircleOut: {fileID: 0}
+  isComplet: 0
+  BoxCollierd2D: {fileID: 1136063533}
 --- !u!61 &1136063533
 BoxCollider2D:
   m_ObjectHideFlags: 0

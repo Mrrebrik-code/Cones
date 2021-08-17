@@ -20,6 +20,19 @@ public class PausedHandler : MonoBehaviour
 	{
 		Instance = this;
 	}
+
+	public void ActiveBoxColliderToCones(bool active)
+	{
+		if(GameHandler.Instance.CurrentLevel != null)
+		{
+			foreach (var cone in GameHandler.Instance.CurrentLevel.Cones)
+			{
+				cone.BoxCollierd2D.enabled = active;
+			}
+		}
+		
+
+	}
 	public void ContinueToMenu()
 	{
 		SceneManager.LoadScene(_sceneMenu);
@@ -27,25 +40,30 @@ public class PausedHandler : MonoBehaviour
 	public void OpenMapLevels()
 	{
 		_mapLevels.SetActive(true);
+		ActiveBoxColliderToCones(false);
 	}
 	public void CloseMapLevels()
 	{
+		ActiveBoxColliderToCones(true);
 		_mapLevels.SetActive(false);
 	}
 
 	public void OpenWinPanel()
 	{
+		ActiveBoxColliderToCones(false);
 		_winPanel.SetActive(true);
 		_textCountMoleculesReward.text = GameHandler.Instance.CurrentLevel.RewardMolecules.ToString();
 		_textCurrentCompletLevel.text = $"спнбемэ { GameHandler.Instance.CurrentLevel.Id}\nопнидем";
 	}
 	public void CloseWinPanel()
 	{
+		ActiveBoxColliderToCones(true);
 		_winPanel.SetActive(false);
 	}
 
 	public void CloseHomePanel()
 	{
+		ActiveBoxColliderToCones(true);
 		_homePanel.SetActive(false);
 	}
 
