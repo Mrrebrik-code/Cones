@@ -29,6 +29,10 @@ public class AudioHandler : MonoBehaviour
 		{
 			Instance = this;
 		}
+		else
+		{
+			Destroy(gameObject);
+		}
 		DontDestroyOnLoad(gameObject);
 	}
 

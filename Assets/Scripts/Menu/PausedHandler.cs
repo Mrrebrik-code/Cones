@@ -31,6 +31,8 @@ public class PausedHandler : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
+		_sliderSound.value = AudioHandler.Instance.SoundSource.volume;
+		_sliderMusic.value = AudioHandler.Instance.MusicSource.volume;
 	}
 
 	public void Update()
