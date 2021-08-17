@@ -13,6 +13,14 @@ public class PausedHandler : MonoBehaviour
 	[SerializeField] private Text _textCurrentCompletLevel;
 	[SerializeField] private GameObject _popupHelper;
 	[SerializeField] private Text _textPopup;
+
+	[SerializeField] private GameObject _settingsPanel;
+	[SerializeField] private Slider _sliderSound;
+	[SerializeField] private Text _textSoundValue;
+	[SerializeField] private Slider _sliderMusic;
+	[SerializeField] private Text _textMusicValue;
+	private bool isSettings = false;
+
 	public Text _textCountMoleculesReward;
 	private const string _sceneMenu = "_Menu";
 
@@ -21,16 +29,27 @@ public class PausedHandler : MonoBehaviour
 		Instance = this;
 	}
 
+	public void Update()
+	{
+		if (isSettings)
+		{
+			AudioHandler.Instance.SoundSource.volume = _sliderSound.value;
+			_textSoundValue.text = _sliderSound.value * 100 + "%";
+
+			AudioHandler.Instance.MusicSource.volume = _sliderMusic.value;
+			_textMusicValue.text = _sliderMusic.value * 100 + "%";
+		}
+	}
 	public void ActiveBoxColliderToCones(bool active)
 	{
-		if(GameHandler.Instance.CurrentLevel != null)
+		if (GameHandler.Instance.CurrentLevel != null)
 		{
 			foreach (var cone in GameHandler.Instance.CurrentLevel.Cones)
 			{
 				cone.BoxCollierd2D.enabled = active;
 			}
 		}
-		
+
 
 	}
 	public void ContinueToMenu()
@@ -48,6 +67,17 @@ public class PausedHandler : MonoBehaviour
 		_mapLevels.SetActive(false);
 	}
 
+	public void OpenSettingsPanel()
+	{
+		isSettings = true;
+		_settingsPanel.SetActive(true);
+	}
+
+	public void CloseSettingsPanel()
+	{
+		isSettings = false;
+		_settingsPanel.SetActive(false);
+	}
 	public void OpenWinPanel()
 	{
 		ActiveBoxColliderToCones(false);

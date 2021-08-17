@@ -20,6 +20,8 @@ public class AudioHandler : MonoBehaviour
 	[SerializeField] private AudioSource _soundSource;
 	[SerializeField] private AudioSource _musicSource;
 
+	public AudioSource SoundSource { get { return _soundSource; } }
+	public AudioSource MusicSource { get{ return _musicSource; } }
 	[SerializeField] private AudioClip[] _sounds;
 	private void Awake()
 	{
