@@ -14,12 +14,12 @@ public class ShowAd : MonoBehaviour
 
 	public void ShowYandexAd()
 	{
-
-		switch (TypeAd)
+		Debug.Log("YandexAd");
+		/*switch (TypeAd)
 		{
 			case TypeAd.Interstitial:
 				YandexSDK.instance.ShowInterstitial();
 				break;
-		}
+		}*/
 	}
 }

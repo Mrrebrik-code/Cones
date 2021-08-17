@@ -1338,5 +1338,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[YandexSDK]'
       objectReference: {fileID: 0}
+    - target: {fileID: 8728255906732576215, guid: c30295badc7f24f43bd25cb686f8c184, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c30295badc7f24f43bd25cb686f8c184, type: 3}

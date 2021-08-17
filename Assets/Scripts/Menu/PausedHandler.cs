@@ -8,6 +8,10 @@ public class PausedHandler : MonoBehaviour
 {
 	public static PausedHandler Instance;
 	[SerializeField] private GameObject _mapLevels;
+	[SerializeField] private GameObject _buttonBack;
+	[SerializeField] private GameObject _buttonHome;
+
+
 	[SerializeField] private GameObject _winPanel;
 	[SerializeField] private GameObject _homePanel;
 	[SerializeField] private Text _textCurrentCompletLevel;
@@ -56,13 +60,29 @@ public class PausedHandler : MonoBehaviour
 	{
 		SceneManager.LoadScene(_sceneMenu);
 	}
-	public void OpenMapLevels()
+	public void OpenMapLevels(bool isHome = false)
 	{
+		if (isHome)
+		{
+			_buttonBack.SetActive(false);
+			_buttonHome.SetActive(true);
+		}
+		else
+		{
+			_buttonBack.SetActive(true);
+			_buttonHome.SetActive(false);
+
+		}
 		_mapLevels.SetActive(true);
 		ActiveBoxColliderToCones(false);
 	}
-	public void CloseMapLevels()
+	public void CloseMapLevels(bool isHome = false)
 	{
+		if (isHome)
+		{
+			_buttonBack.SetActive(true);
+			_buttonHome.SetActive(false);
+		}
 		ActiveBoxColliderToCones(true);
 		_mapLevels.SetActive(false);
 	}

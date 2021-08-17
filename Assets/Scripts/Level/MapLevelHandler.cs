@@ -34,6 +34,11 @@ public class MapLevelHandler : MonoBehaviour
 				LeveButtons[level.Id - 1].GetComponent<Button>().interactable = false;
 			}
 		}
+		for (int i = GameHandler.Instance.Levels.Count; i < LeveButtons.Count; i++)
+		{
+			LeveButtons[i].SetColor(ColorNoActive);
+			LeveButtons[i].GetComponent<Button>().interactable = false;
+		}
 		foreach (var levelButton in LeveButtons)
 		{
 			if (tempLevel != null && levelButton.LevelId == tempLevel.Id)

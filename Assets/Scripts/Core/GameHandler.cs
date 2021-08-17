@@ -87,9 +87,10 @@ public class GameHandler : MonoBehaviour
 	{
 		if (CurrentLevel.Id > Levels.Count - 1)
 		{
+			CurrentLevel.gameObject.SetActive(false);
 			_mapLevelHandler.UpdateLevelButton();
 			PausedHandler.Instance.CloseWinPanel();
-			PausedHandler.Instance.OpenMapLevels();
+			PausedHandler.Instance.OpenMapLevels(true);
 			AudioHandler.Instance.PlaySound(TypeSound.popup);
 			PausedHandler.Instance.ShowPopupHelper("Уровни закончились! Пожалуйста подождите обновления...");
 			return;
