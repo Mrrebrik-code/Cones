@@ -16,18 +16,21 @@ public class EditorHandler : MonoBehaviour
 
 	public List<CircleEditor> Circles = new List<CircleEditor>();
 
-	[SerializeField] private Image statusRun;
+	[SerializeField] private Image _statusRun;
 
 	public List<ConesEditor> SelectedCones = new List<ConesEditor>();
 	[SerializeField] private Text _textButtonRun;
-	public void SelectedCone(ConesEditor cone)
-	{
-		SelectedCones.Add(cone);
-	}
+
+	public bool isRun;
 
 	private void Awake()
 	{
 		Instance = this;
+	}
+
+	public void SelectedCone(ConesEditor cone)
+	{
+		SelectedCones.Add(cone);
 	}
 
 	public void Break()
@@ -73,7 +76,7 @@ public class EditorHandler : MonoBehaviour
 		}
 	}
 
-	public bool isRun;
+
 	public void Run()
 	{
 
@@ -81,7 +84,7 @@ public class EditorHandler : MonoBehaviour
 		{
 			_textButtonRun.text = "Œ—“¿ÕŒ¬»“‹";
 			Save();
-			statusRun.color = Color.red;
+			_statusRun.color = Color.red;
 			isRun = !isRun;
 			foreach (var cone in ConesEditors)
 			{
@@ -99,7 +102,7 @@ public class EditorHandler : MonoBehaviour
 			Break();
 			Recuve();
 			isRun = !isRun;
-			statusRun.color = Color.white;
+			_statusRun.color = Color.white;
 			foreach (var cone in ConesEditors)
 			{
 				cone.Button.SetActive(false);

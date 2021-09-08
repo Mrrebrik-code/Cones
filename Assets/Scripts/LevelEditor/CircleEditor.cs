@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using Itibsoft.Utils.ToolsEngine;
 
 public class CircleEditor : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -35,27 +36,34 @@ public class CircleEditor : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	}
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		if (!isRunEditor)
+		if (ToolsEditor.Instance.CurrentTools != null && !isRunEditor)
 		{
-			if (ToolsEditor.Instance.CurrentTools != null)
+			EnterMouse = false;
+
+			ToolsType typeTool = ToolsEditor.Instance.CurrentTools.TypeTool;
+			switch (typeTool)
 			{
-				EnterMouse = false;
-				if (ToolsEditor.Instance.CurrentTools.TypeTool == ToolsType.circles)
-				{
-					SetColor(ToolsEditor.Instance.CurrentconfigColor.Color);
-					CurrentColor = ToolsEditor.Instance.CurrentconfigColor.Color;
-					OnAddCircleAction?.Invoke(this);
-					_id = ToolsEditor.Instance.CurrentconfigColor.Id;
-				}
-				if (ToolsEditor.Instance.CurrentTools.TypeTool == ToolsType.lastik)
-				{
+				case ToolsType.circles:
+					if (ToolsEngine.IsNull(ToolsEditor.Instance.CurrentconfigColor))
+					{
+						SetColor(ToolsEditor.Instance.CurrentconfigColor.Color);
+						CurrentColor = ToolsEditor.Instance.CurrentconfigColor.Color;
+						OnAddCircleAction?.Invoke(this);
+						_id = ToolsEditor.Instance.CurrentconfigColor.Id;
+					}
+					else
+					{
+						SetColor(CurrentColor);
+					}
+					break;
+
+				case ToolsType.lastik:
 					OnActiveToCellAction?.Invoke();
 					Image.color = new Color(0, 0, 0, 0f);
 					CurrentColor = Image.color;
-				}
+					break;
 			}
 		}
-
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
