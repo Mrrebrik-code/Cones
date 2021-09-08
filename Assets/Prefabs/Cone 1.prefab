@@ -92,6 +92,8 @@ MonoBehaviour:
   EnterMouse: 0
   CurrentColor: {r: 0, g: 0, b: 0, a: 0}
   isRunEditor: 0
+  ColorSaved: {r: 0, g: 0, b: 0, a: 0}
+  IdSaved: 0
   StartPosition: {x: 0, y: 0, z: 0}
   _id: 0
   isOut: 0
@@ -262,6 +264,8 @@ MonoBehaviour:
   EnterMouse: 0
   CurrentColor: {r: 0, g: 0, b: 0, a: 0}
   isRunEditor: 0
+  ColorSaved: {r: 0, g: 0, b: 0, a: 0}
+  IdSaved: 0
   StartPosition: {x: 0, y: 0, z: 0}
   _id: 0
   isOut: 0
@@ -300,8 +304,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.7099991, y: 46.86}
+  m_SizeDelta: {x: 26.98, y: 93.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5419428667377491894
 CanvasRenderer:
@@ -489,6 +493,8 @@ MonoBehaviour:
   EnterMouse: 0
   CurrentColor: {r: 0, g: 0, b: 0, a: 0}
   isRunEditor: 0
+  ColorSaved: {r: 0, g: 0, b: 0, a: 0}
+  IdSaved: 0
   StartPosition: {x: 0, y: 0, z: 0}
   _id: 0
   isOut: 0
@@ -687,6 +693,8 @@ MonoBehaviour:
   CircleBusy: {fileID: 2468784112126570756}
   StartCircleBusy: {fileID: 0}
   IsBusy: 1
+  SavedIsBusy: 0
+  SavedCirclyBusy: {fileID: 0}
 --- !u!1 &8651671607466957269
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +788,8 @@ MonoBehaviour:
   CircleBusy: {fileID: 1226503876563335882}
   StartCircleBusy: {fileID: 0}
   IsBusy: 1
+  SavedIsBusy: 0
+  SavedCirclyBusy: {fileID: 0}
 --- !u!1 &8651671609198211604
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,3 +883,5 @@ MonoBehaviour:
   CircleBusy: {fileID: 4315782611112180024}
   StartCircleBusy: {fileID: 0}
   IsBusy: 1
+  SavedIsBusy: 0
+  SavedCirclyBusy: {fileID: 0}

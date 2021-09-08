@@ -1336,6 +1336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1544087941}
     m_Modifications:
+    - target: {fileID: 6468929411103316859, guid: 8a1a3d2615b3ea147bb39a3a96563f98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8651671607265788113, guid: 8a1a3d2615b3ea147bb39a3a96563f98, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3791,7 +3795,7 @@ MonoBehaviour:
   AddButton: {fileID: 0}
   MaxCountCones: 6
   Circles: []
-  _statusRun: {fileID: 0}
+  _statusRun: {fileID: 372372726}
   SelectedCones: []
   _textButtonRun: {fileID: 2076203982}
   isRun: 0

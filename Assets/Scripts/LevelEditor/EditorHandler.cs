@@ -37,6 +37,7 @@ public class EditorHandler : MonoBehaviour
 	{
 		foreach (var cone in ConesEditors)
 		{
+			//cone.CircleOut = null;
 			foreach (var cell in cone.Cells)
 			{
 				cell.StartCircleBusy.SetColor(Color.white);
@@ -106,11 +107,14 @@ public class EditorHandler : MonoBehaviour
 			foreach (var cone in ConesEditors)
 			{
 				cone.Button.SetActive(false);
+				cone.CircleOut = null;
 			}
 			foreach (var circle in Circles)
 			{
 				circle.isRunEditor = false;
 			}
+
+			EditorHandler.Instance.SelectedCones = new List<ConesEditor>();
 		}
 		
 	}
