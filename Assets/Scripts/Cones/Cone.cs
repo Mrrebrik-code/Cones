@@ -25,7 +25,6 @@ public class Cone : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log("义耱1");
 					GameHandler.Instance.SelectedCones[0].Cells.Reverse();
 					foreach (var cell in GameHandler.Instance.SelectedCones[0].Cells)
 					{
@@ -82,7 +81,6 @@ public class Cone : MonoBehaviour
 		}
 		else if (!CheckCircle())
 		{
-			Debug.Log("义耱2");
 			
 			if(GameHandler.Instance.CurrentLevel.Id <= 3)
 			{
@@ -113,7 +111,6 @@ public class Cone : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("义耱3");
 			AudioHandler.Instance.PlaySound(TypeSound.moveTo);
 			GameHandler.Instance.SelectedCones[1].Cells.Reverse();
 			foreach (var cell in GameHandler.Instance.SelectedCones[1].Cells)
@@ -191,7 +188,6 @@ public class Cone : MonoBehaviour
 	}
 	public void InAndOutCircleFromCell()
 	{
-		Debug.Log("义耱4");
 		AudioHandler.Instance.PlaySound(TypeSound.move);
 		foreach (var cell in Cells)
 		{
