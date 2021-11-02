@@ -19,22 +19,22 @@ public class GameHandler : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
-		foreach (var level in Levels)
-		{
-			if(PlayerPrefs.HasKey("level_" + (level.Id - 1)))
-			{
-				level.isComplet = true;
-				continue;
-			}
-			else
-			{
-				level.isComplet = false;
-				StartLevel(level);
-				return;
-			}
-		}
-		StartLevel(Levels[0]);
-	}
+        //foreach (var level in Levels)
+        //{
+        //	if(PlayerPrefs.HasKey("level_" + (level.Id - 1)))
+        //	{
+        //		level.isComplet = true;
+        //		continue;
+        //	}
+        //	else
+        //	{
+        //		level.isComplet = false;
+        //		StartLevel(level);
+        //		return;
+        //	}
+        //}
+        StartLevel(Levels[26]);
+    }
 	public void StartLevel(Level levelStart)
 	{
 
@@ -44,7 +44,7 @@ public class GameHandler : MonoBehaviour
 			BreakLevel();
 		}
 		CurrentLevel = levelStart;
-		_mapLevelHandler.UpdateLevelButton();
+		//_mapLevelHandler.UpdateLevelButton();
 		foreach (var level in Levels)
 		{
 
@@ -88,7 +88,7 @@ public class GameHandler : MonoBehaviour
 		if (CurrentLevel.Id > Levels.Count - 1)
 		{
 			CurrentLevel.gameObject.SetActive(false);
-			_mapLevelHandler.UpdateLevelButton();
+			//_mapLevelHandler.UpdateLevelButton();
 			PausedHandler.Instance.CloseWinPanel();
 			PausedHandler.Instance.OpenMapLevels(true);
 			AudioHandler.Instance.PlaySound(TypeSound.popup);
