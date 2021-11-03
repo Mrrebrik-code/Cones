@@ -33,7 +33,7 @@ public class GameHandler : MonoBehaviour
         //		return;
         //	}
         //}
-        StartLevel(Levels[38]);
+        StartLevel(Levels[39]);
     }
 	public void StartLevel(Level levelStart)
 	{
