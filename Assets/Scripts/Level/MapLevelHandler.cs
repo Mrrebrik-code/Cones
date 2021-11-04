@@ -9,7 +9,37 @@ public class MapLevelHandler : MonoBehaviour
 	public Color ColorNoActive;
 	public Color ColorActive;
 	public Color ColorComplet;
+	[SerializeField] private GameObject[] _listLevels;
+	private int _currentIndexList = 0;
 
+	public void NextListing()
+	{
+		if (_currentIndexList == _listLevels.Length - 1) return;
+		_currentIndexList++;
+		SetlevelsGroup(_currentIndexList);
+	}
+
+	public void BackListing()
+	{
+		if (_currentIndexList == 0) return;
+		_currentIndexList--;
+		SetlevelsGroup(_currentIndexList);
+
+	}
+
+	private void SetlevelsGroup(int index)
+	{
+		foreach (var levelsGroup in _listLevels)
+		{
+			levelsGroup.SetActive(false);
+		}
+		_listLevels[index].SetActive(true);
+	}
+
+	public void ShowCurrentLevelGroup(int id)
+	{
+		SetlevelsGroup(id);
+	}
 	public void UpdateLevelButton()
 	{
 		Level tempLevel = default;
@@ -47,5 +77,7 @@ public class MapLevelHandler : MonoBehaviour
 				levelButton.GetComponent<Button>().interactable = true;
 			}
 		}
+
+
 	}
 }
