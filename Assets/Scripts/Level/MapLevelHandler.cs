@@ -33,7 +33,8 @@ public class MapLevelHandler : MonoBehaviour
 		{
 			levelsGroup.SetActive(false);
 		}
-		_listLevels[index].SetActive(true);
+		if (index == 2) index--;
+		 _listLevels[index].SetActive(true);
 	}
 
 	public void ShowCurrentLevelGroup(int id)

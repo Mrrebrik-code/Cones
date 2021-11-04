@@ -31,6 +31,7 @@ public class GameHandler : MonoBehaviour
 				level.isComplet = false;
 				StartLevel(level);
 				return;
+				//break;
 			}
 		}
 		StartLevel(Levels[0]);
