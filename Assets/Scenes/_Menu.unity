@@ -268,7 +268,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "@ITIBSOFT - Cones v0.0.1.4 (2021\u0433.)"
+  m_Text: "@ITIBSOFT - Cones v0.0.1.5 (2021\u0433.)"
 --- !u!222 &158134517
 CanvasRenderer:
   m_ObjectHideFlags: 0
